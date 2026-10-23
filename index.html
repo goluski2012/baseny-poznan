@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wolne Tory Poznań v4</title>
+    <title>Wolne Tory Poznań v5</title>
     <style>
         body { background-color: #020617; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding-bottom: 48px; }
         header { background: linear-gradient(to bottom, #1e3a8a, #020617); padding: 32px 16px 24px 16px; text-align: center; }
@@ -15,11 +15,15 @@
         .search-btn { width: 100%; background-color: #2563eb; color: white; border: none; border-radius: 12px; padding: 12px; font-size: 14px; font-weight: 600; margin-top: 10px; cursor: pointer; }
         .search-result { display: none; margin-top: 16px; padding: 16px; background-color: rgba(30, 58, 138, 0.6); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; font-size: 13px; line-height: 1.6; }
         h2 { font-size: 11px; font-weight: 700; color: rgba(96, 165, 250, 0.8); margin: 32px 0 12px 0; text-transform: uppercase; letter-spacing: 1.5px; }
-        .pool-card { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 16px; margin-bottom: 12px; cursor: pointer; }
+        .pool-card { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
         .pool-info { display: flex; justify-content: space-between; align-items: center; }
         .pool-title { font-size: 16px; font-weight: 700; }
         .pool-distance { font-size: 12px; color: #94a3b8; margin-top: 4px; }
-        .badge { font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 10px; text-align: center; min-width: 105px; background-color: rgba(59, 130, 246, 0.1); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        
+        /* Tradycyjny przycisk HTML - odporny na blokady mobilne */
+        .action-button { font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 10px; background-color: #1e293b; color: #60a5fa; border: 1px solid #334155; cursor: pointer; }
+        .action-button:active { background-color: #2563eb; color: white; }
+
         .pool-schedule { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid #334155; font-size: 12px; }
         .schedule-row { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid rgba(51, 65, 85, 0.2); }
         .schedule-row:last-child { border-bottom: none; }
@@ -51,16 +55,17 @@
             <div id="searchResult" class="search-result"></div>
         </div>
 
-        <h2>⭐ Moje Baseny (Kliknij kartę, by rozwinąć)</h2>
+        <h2>⭐ Moje Baseny (Główne)</h2>
         
         <!-- Grunwald -->
-        <div class="pool-card" onclick="clickCard('grunwald-sch')">
+        <div class="pool-card">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Grunwald</div>
                     <div class="pool-distance">📍 14.5 km z Gołusek</div>
                 </div>
-                <span class="badge">Rozwiń grafik 🔽</span>
+                <!-- Przycisk wywołuje funkcję niezależnie od kafelka -->
+                <button class="action-button" onclick="clickButton('grunwald-sch')">Grafik 🔽</button>
             </div>
             <div id="grunwald-sch" class="pool-schedule">
                 <div class="schedule-row"><span>06:15 - 07:00</span><span class="lanes-free">7 torów wolnych</span></div>
@@ -75,13 +80,13 @@
         </div>
 
         <!-- Chwiałka -->
-        <div class="pool-card" onclick="clickCard('chwialka-sch')">
+        <div class="pool-card">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Chwiałka</div>
                     <div class="pool-distance">📍 17.3 km z Gołusek</div>
                 </div>
-                <span class="badge">Rozwiń grafik 🔽</span>
+                <button class="action-button" onclick="clickButton('chwialka-sch')">Grafik 🔽</button>
             </div>
             <div id="chwialka-sch" class="pool-schedule">
                 <div class="schedule-row"><span>06:15 - 11:30</span><span class="lanes-free">6 torów wolnych (Cały basen!)</span></div>
@@ -93,13 +98,13 @@
         </div>
 
         <!-- Tarnowskie Termy -->
-        <div class="pool-card" onclick="clickCard('termy-sch')">
+        <div class="pool-card">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Tarnowskie Termy</div>
                     <div class="pool-distance">📍 17.4 km z Gołusek</div>
                 </div>
-                <span class="badge">Rozwiń grafik 🔽</span>
+                <button class="action-button" onclick="clickButton('termy-sch')">Grafik 🔽</button>
             </div>
             <div id="termy-sch" class="pool-schedule">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
@@ -110,13 +115,13 @@
         </div>
 
         <!-- CityZen -->
-        <div class="pool-card" onclick="clickCard('cityzen-sch')">
+        <div class="pool-card">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Pływalnia CityZen</div>
                     <div class="pool-distance">📍 18.0 km z Gołusek</div>
                 </div>
-                <span class="badge">Rozwiń grafik 🔽</span>
+                <button class="action-button" onclick="clickButton('cityzen-sch')">Grafik 🔽</button>
             </div>
             <div id="cityzen-sch" class="pool-schedule">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
@@ -129,7 +134,6 @@
         <!-- Sekcja Pozostałe Baseny -->
         <h2>📋 Pozostałe pływalnie w okolicy</h2>
         
-        <!-- Winogrady -->
         <div class="directory-card">
             <div class="dir-header"><span>POSiR Winogrady</span><span class="dir-distance">21.5 km</span></div>
             <span class="dir-meta">📍 Osiedle Zwycięstwa 125, Poznań</span>
@@ -140,8 +144,5 @@
             </div>
         </div>
 
-        <!-- Rataje -->
         <div class="directory-card">
             <div class="dir-header"><span>POSiR Rataje</span><span class="dir-distance">22.1 km</span></div>
-            <span class="dir-meta">📍 Osiedle Piastowskie 40, Poznań</span>
-            <span class="dir-meta">🕒 Pon-Nied: 6:00 - 22:00</span>
