@@ -88,9 +88,7 @@
             padding: 16px;
             margin-bottom: 12px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
-        .pool-card:hover { background-color: #1e293b; }
         .pool-info {
             display: flex;
             justify-content: space-between;
@@ -135,14 +133,14 @@
         <div class="search-box">
             <span style="font-size: 11px; font-weight: bold; color: #60a5fa; text-transform: uppercase;">✨ Inteligentny asystent wyszukiwania</span>
             <input id="searchInput" type="text" placeholder="np. Chwiałka poniedziałek 14:00" class="input-field" style="margin-top: 8px;">
-            <button onclick="executeSearch()" class="search-btn">Szukaj dostępności</button>
+            <button id="searchBtn" class="search-btn">Szukaj dostępności</button>
             <div id="searchResult" class="search-result"></div>
         </div>
 
         <h2>⭐ Moje Baseny (Kliknij, aby rozwinąć grafik)</h2>
         
         <!-- Grunwald -->
-        <div class="pool-card" onclick="toggleSchedule('grunwald-sch')">
+        <div class="pool-card" id="card-grunwald">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Grunwald</div>
@@ -150,7 +148,7 @@
                 </div>
                 <span class="badge badge-amber">Zobacz grafik</span>
             </div>
-            <div id="grunwald-sch" class="pool-schedule" onclick="event.stopPropagation()">
+            <div id="grunwald-sch" class="pool-schedule">
                 <div class="schedule-row"><span>06:15 - 07:00</span><span class="lanes-free">7 torów wolnych</span></div>
                 <div class="schedule-row"><span>07:00 - 08:30</span><span class="lanes-warn">Zajęte / 1 tor wolny</span></div>
                 <div class="schedule-row"><span>08:30 - 09:15</span><span class="lanes-free">8 torów wolnych (Cały basen!)</span></div>
@@ -163,7 +161,7 @@
         </div>
 
         <!-- Chwiałka -->
-        <div class="pool-card" onclick="toggleSchedule('chwialka-sch')">
+        <div class="pool-card" id="card-chwialka">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Chwiałka</div>
@@ -171,7 +169,7 @@
                 </div>
                 <span class="badge badge-emerald">Zobacz grafik</span>
             </div>
-            <div id="chwialka-sch" class="pool-schedule" onclick="event.stopPropagation()">
+            <div id="chwialka-sch" class="pool-schedule">
                 <div class="schedule-row"><span>06:15 - 11:30</span><span class="lanes-free">6 torów wolnych (Cały basen!)</span></div>
                 <div class="schedule-row"><span>11:30 - 15:15</span><span class="lanes-busy">Zajęte (Szkoły / Rezerwacje)</span></div>
                 <div class="schedule-row"><span>15:15 - 16:45</span><span class="lanes-warn">Ograniczenie / 4 tory wolne</span></div>
@@ -181,7 +179,7 @@
         </div>
 
         <!-- Tarnowskie Termy -->
-        <div class="pool-card" onclick="toggleSchedule('termy-sch')">
+        <div class="pool-card" id="card-termy">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Tarnowskie Termy</div>
@@ -189,16 +187,16 @@
                 </div>
                 <span class="badge badge-slate">Zobacz grafik</span>
             </div>
-            <div id="termy-sch" class="pool-schedule" onclick="event.stopPropagation()">
+            <div id="termy-sch" class="pool-schedule">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
                     📷 Obiekt publikuje grafik wyłącznie w formie zdjęcia.<br>
-                    <a href="https://tarnowskie-termy.pl/pl/aquapark-tarnowskie-termy/grafik-torow" target="_blank" style="color: #60a5fa; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz zdjęcie oryginalne ↗️</a>
+                    <a href="https://tarnowskie-termy.pl" target="_blank" style="color: #60a5fa; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz zdjęcie oryginalne ↗️</a>
                 </div>
             </div>
         </div>
 
         <!-- CityZen -->
-        <div class="pool-card" onclick="toggleSchedule('cityzen-sch')">
+        <div class="pool-card" id="card-cityzen">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Pływalnia CityZen</div>
@@ -206,23 +204,24 @@
                 </div>
                 <span class="badge badge-rose">Zobacz grafik</span>
             </div>
-            <div id="cityzen-sch" class="pool-schedule" onclick="event.stopPropagation()">
+            <div id="cityzen-sch" class="pool-schedule">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
                     🔒 System eFitness wymaga zalogowania lub aplikacji mobilnej.<br>
-                    <a href="https://plywalnia-cityzen-cms.efitness.com.pl/kalendarz-zajec" target="_blank" style="color: #fb7185; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz kalendarz eFitness ↗️</a>
+                    <a href="https://efitness.com.pl" target="_blank" style="color: #fb7185; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz kalendarz eFitness ↗️</a>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
+        // Niezawodna obsługa kliknięć w karty basenów
+        document.getElementById('card-grunwald').addEventListener('click', function() { toggleSchedule('grunwald-sch'); });
+        document.getElementById('card-chwialka').addEventListener('click', function() { toggleSchedule('chwialka-sch'); });
+        document.getElementById('card-termy').addEventListener('click', function() { toggleSchedule('termy-sch'); });
+        document.getElementById('card-cityzen').addEventListener('click', function() { toggleSchedule('cityzen-sch'); });
+
         function toggleSchedule(id) {
-            const sch = document.getElementById(id);
-            sch.style.display = (sch.style.display === 'block') ? 'none' : 'block';
-        }
-
-        function executeSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const resultBox = document.getElementById('searchResult');
-            resultBox.style.display = 'block';
-
+            var sch = document.getElementById(id);
+            if (sch.style.display === 'block') {
+                sch.style.display = 'none';
+            } else {
