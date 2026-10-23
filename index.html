@@ -4,121 +4,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wolne Tory Poznań</title>
-    <!-- Stabilna i niezawodna wersja stylów Tailwind -->
-    <script src="https://tailwindcss.com"></script>
-    <!-- Ikony przez bezpieczne połączenie HTTPS -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        /* Czyste style CSS wbudowane bezpośrednio w stronę – gwarancja niebieskiego koloru */
+        body {
+            background-color: #020617;
+            color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding-bottom: 48px;
+            -webkit-font-smoothing: antialiased;
+        }
+        header {
+            background: linear-gradient(to bottom, #1e3a8a, #020617);
+            padding: 32px 16px 24px 16px;
+            text-align: center;
+        }
+        h1 {
+            color: #60a5fa;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+        .meta-desc {
+            color: #93c5fd;
+            opacity: 0.7;
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        .highlight {
+            color: #fbbf24;
+        }
+        main {
+            max-width: 400px;
+            margin: 8px auto 0 auto;
+            padding: 0 16px;
+            box-sizing: border-box;
+        }
+        .search-box {
+            background-color: #0f172a;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        .label-text {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .input-field {
+            width: 100%;
+            background-color: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 14px;
+            color: #e2e8f0;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .search-btn {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .search-btn:hover {
+            background-color: #3b82f6;
+        }
+        .search-result {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            background-color: rgba(30, 58, 138, 0.6);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        h2 {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(96, 165, 250, 0.8);
+            margin: 32px 0 12px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .pool-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .pool-card {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pool-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin: 0;
+            color: #f8fafc;
+        }
+        .pool-distance {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 4px 0 0 0;
+        }
+        .badge {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 10px;
+        }
+        .badge-amber {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: #fbbf24;
+        }
+        .badge-emerald {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+        }
+        .badge-slate {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #94a3b8;
+        }
+        .badge-rose {
+            background-color: rgba(244, 63, 94, 0.1);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            color: #fb7185;
+        }
+        .directory-card {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 13px;
+        }
+        .dir-header {
+            display: flex;
+            justify-content: text;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 14px;
+            color: #e2e8f0;
+        }
+        .dir-distance {
+            color: #3b82f6;
+        }
+        .dir-meta {
+            color: #94a3b8;
+            margin: 8px 0 0 0;
+            font-size: 12px;
+        }
+        .dir-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .btn-secondary {
+            flex: 1;
+            background-color: #1e293b;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 8px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .btn-primary-outline {
+            flex: 1;
+            background-color: rgba(30, 58, 138, 0.4);
+            color: #60a5fa;
+            text-align: center;
+            padding: 8px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen pb-12">
+<body>
 
-    <!-- Nagłówek aplikacji -->
-    <header class="bg-gradient-to-b from-blue-900 via-blue-950 to-slate-950 pt-8 pb-6 text-center px-4">
-        <h1 class="text-3xl font-extrabold text-blue-400 tracking-tight flex justify-center items-center gap-2">
-            <i class="fas fa-swimmer"></i> Wolne Tory Poznań
-        </h1>
-        <p class="text-xs text-blue-300/70 mt-1.5 font-medium tracking-wide">Wszystkie odległości mierzone z lokalizacji: <span class="text-amber-400">Gołuski</span></p>
+    <header>
+        <h1>🏊‍♂️ Wolne Tory Poznań</h1>
+        <div class="meta-desc">Odległości mierzone z lokalizacji: <span class="highlight">Gołuski</span></div>
     </header>
 
-    <main class="max-w-md mx-auto px-4 mt-2">
-        
-        <!-- Inteligentne Okno Wyszukiwania -->
-        <div class="bg-slate-900 p-5 rounded-2xl border border-blue-500/30 shadow-2xl">
-            <label class="block text-xs font-bold text-blue-400 mb-2 tracking-wider uppercase flex items-center gap-1.5">
-                <i class="fas fa-magic"></i> Inteligentny asystent torów
-            </label>
-            <div class="flex flex-col gap-2.5">
-                <input id="searchInput" type="text" 
-                       placeholder="np. znajdź wolne tory na Chwiałce w poniedziałek o 14:00" 
-                       class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3.5 py-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none transition-all shadow-inner">
-                <button onclick="handleSmartSearch()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
-                    <i class="fas fa-search-location"></i> Szukaj dostępności
-                </button>
-            </div>
-            <div id="searchResult" class="hidden mt-4 p-4 bg-blue-950/60 border border-blue-500/20 rounded-xl text-xs text-slate-200 leading-relaxed"></div>
+    <main>
+        <!-- Wyszukiwarka -->
+        <div class="search-box">
+            <span class="label-text">✨ Inteligentny asystent torów</span>
+            <input id="searchInput" type="text" 
+                   placeholder="np. znajdź wolne tory na Chwiałce w poniedziałek o 14:00" 
+                   class="input-field">
+            <button onclick="handleSmartSearch()" class="search-btn">Szukaj dostępności</button>
+            <div id="searchResult" class="search-result"></div>
         </div>
 
-        <!-- Sekcja 1: Moje Baseny Główne -->
-        <h2 class="text-xs font-bold text-blue-400/80 mt-8 mb-3 tracking-widest uppercase flex items-center gap-2">
-            <i class="fas fa-star text-amber-400"></i> Moje Baseny (Główne)
-        </h2>
-        
-        <div class="flex flex-col gap-3.5">
-            <!-- POSiR Grunwald -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
+        <!-- Sekcja Moje Baseny Główne -->
+        <h2>⭐ Moje Baseny (Główne)</h2>
+        <div class="pool-list">
+            <div class="pool-card">
                 <div>
-                    <h3 class="font-bold text-slate-100 text-base">POSiR Grunwald</h3>
-                    <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>14.5 km z Gołusek</p>
+                    <div class="pool-title">POSiR Grunwald</div>
+                    <p class="pool-distance">📍 14.5 km z Gołusek</p>
                 </div>
-                <span class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-amber-500"></span> 1 wolny tor
-                </span>
+                <span class="badge badge-amber">1 wolny tor</span>
             </div>
 
-            <!-- POSiR Chwiałka -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="pool-card">
                 <div>
-                    <h3 class="font-bold text-slate-100 text-base">POSiR Chwiałka</h3>
-                    <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>17.3 km z Gołusek</p>
+                    <div class="pool-title">POSiR Chwiałka</div>
+                    <p class="pool-distance">📍 17.3 km z Gołusek</p>
                 </div>
-                <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 2 wolne tory
-                </span>
+                <span class="badge badge-emerald">2 wolne tory</span>
             </div>
 
-            <!-- Tarnowskie Termy -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="pool-card">
                 <div>
-                    <h3 class="font-bold text-slate-100 text-base">Tarnowskie Termy</h3>
-                    <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>17.4 km z Gołusek</p>
+                    <div class="pool-title">Tarnowskie Termy</div>
+                    <p class="pool-distance">📍 17.4 km z Gołusek</p>
                 </div>
-                <span class="bg-slate-800 border border-slate-700 text-slate-400 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-slate-500"></span> Sprawdź grafik
-                </span>
+                <span class="badge badge-slate">Sprawdź grafik</span>
             </div>
 
-            <!-- Pływalnia CityZen -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="pool-card">
                 <div>
-                    <h3 class="font-bold text-slate-100 text-base">Pływalnia CityZen</h3>
-                    <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>18.0 km z Gołusek</p>
+                    <div class="pool-title">Pływalnia CityZen</div>
+                    <p class="pool-distance">📍 18.0 km z Gołusek</p>
                 </div>
-                <span class="bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-rose-500"></span> Rezerwacja zajęć
-                </span>
+                <span class="badge badge-rose">Rezerwacja zajęć</span>
             </div>
         </div>
 
-        <!-- Sekcja 2: Pozostałe Pływalnie w Powiecie -->
-        <h2 class="text-xs font-bold text-blue-400/80 mt-9 mb-3 tracking-widest uppercase flex items-center gap-2">
-            <i class="fas fa-th-list text-blue-500"></i> Pozostałe pływalnie i powiat
-        </h2>
-
-        <div class="flex flex-col gap-3.5">
-            <!-- Winogrady -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs">
-                <div class="flex justify-between items-start">
-                    <h4 class="font-bold text-slate-200 text-sm">POSiR Winogrady</h4>
-                    <span class="text-blue-400 font-semibold bg-blue-950 px-2 py-0.5 rounded border border-blue-900/40">21.5 km</span>
+        <!-- Sekcja Pozostałe Pływalnie -->
+        <h2>📋 Pozostałe pływalnie i powiat</h2>
+        <div class="pool-list">
+            <div class="directory-card">
+                <div class="dir-header">
+                    <span>POSiR Winogrady</span>
+                    <span class="dir-distance">21.5 km</span>
                 </div>
-                <p class="text-slate-400 mt-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-slate-600"></i> Osiedle Zwycięstwa 125, Poznań</p>
-                <p class="text-slate-400 mt-1 flex items-center gap-1.5"><i class="fas fa-clock text-slate-600"></i> Pon-Nied: 6:00 - 22:00</p>
-                <div class="mt-3.5 flex gap-2">
-                    <a href="tel:+48618234544" class="flex-1 bg-slate-800 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
-                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg"><i class="fas fa-external-link-alt mr-1.5"></i> Grafik</a>
+                <p class="dir-meta">📍 Osiedle Zwycięstwa 125, Poznań</p>
+                <p class="dir-meta">🕒 Pon-Nied: 6:00 - 22:00</p>
+                <div class="dir-buttons">
+                    <a href="tel:+48618234544" class="btn-secondary">📞 Zadzwoń</a>
+                    <a href="https://posir.poznan.pl" target="_blank" class="btn-primary-outline">🔗 Grafik</a>
                 </div>
             </div>
 
-            <!-- Rataje -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs">
-                <div class="flex justify-between items-start">
-                    <h4 class="font-bold text-slate-200 text-sm">POSiR Rataje</h4>
-                    <span class="text-blue-400 font-semibold bg-blue-950 px-2 py-0.5 rounded border border-blue-900/40">22.1 km</span>
+            <div class="directory-card">
+                <div class="dir-header">
+                    <span>POSiR Rataje</span>
+                    <span class="dir-distance">22.1 km</span>
                 </div>
-                <p class="text-slate-400 mt-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-slate-600"></i> Osiedle Piastowskie 40, Poznań</p>
-                <p class="text-slate-400 mt-1 flex items-center gap-1.5"><i class="fas fa-clock text-slate-600"></i> Pon-Nied: 6:00 - 22:00</p>
-                <div class="mt-3.5 flex gap-2">
-                    <a href="tel:+48618710642" class="flex-1 bg-slate-800 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
-                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg"><i class="fas fa-external-link-alt mr-1.5"></i> Grafik</a>
+                <p class="dir-meta">📍 Osiedle Piastowskie 40, Poznań</p>
+                <p class="dir-meta">🕒 Pon-Nied: 6:00 - 22:00</p>
+                <div class="dir-buttons">
+                    <a href="tel:+48618710642" class="btn-secondary">📞 Zadzwoń</a>
+                    <a href="https://posir.poznan.pl" target="_blank" class="btn-primary-outline">🔗 Grafik</a>
                 </div>
             </div>
         </div>
@@ -128,21 +299,6 @@
         function handleSmartSearch() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const resultBox = document.getElementById('searchResult');
-            resultBox.classList.remove('hidden');
+            resultBox.style.display = 'block';
 
             let pool = "";
-            if (query.includes("chwiał") || query.includes("chwial")) pool = "Chwiałka";
-            if (query.includes("grunwald") || query.includes("taborowa")) pool = "Grunwald";
-            if (query.includes("tarnowskie")) pool = "Tarnowskie Termy";
-            if (query.includes("cityzen")) pool = "CityZen";
-
-            if (!pool) {
-                resultBox.innerHTML = `Nie rozpoznałem nazwy basenu. Wpisz np. Chwiałka lub Grunwald.`;
-                return;
-            }
-
-            resultBox.innerHTML = `🔍 <strong>Wynik dla obiektu ${pool}:</strong> Analiza grafiku wskazuje na dostępność wolnych torów dla klientów indywidualnych w wybranym przedziale czasowym.`;
-        }
-    </script>
-</body>
-</html>
