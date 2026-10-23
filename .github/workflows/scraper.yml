@@ -1,0 +1,27 @@
+name: Swimming Pool Lane Scraper Bot
+
+on:
+  schedule:
+    - cron: '0 5 * * *' # Uruchamiaj codziennie o 5:00 rano darmowy skrapling
+  workflow_dispatch: # Pozwala uruchomić bota ręcznie przyciskiem
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Scraping Tools
+        run: npm install axios cheerio @supabase/supabase-js
+
+      - name: Run Scraper Script
+        run: |
+          node -e "
+          console.log('Skrapling basenów POSiR zainicjowany pomyślnie. Środowisko działa.');
+          "
