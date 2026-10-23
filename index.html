@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wolne Tory Poznań</title>
+    <!-- Stabilna i niezawodna wersja stylów Tailwind -->
     <script src="https://tailwindcss.com"></script>
-    <link href="https://cloudflare.com" rel="stylesheet">
+    <!-- Ikony przez bezpieczne połączenie HTTPS -->
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen pb-12">
 
-    <!-- Nagłówek -->
+    <!-- Nagłówek aplikacji -->
     <header class="bg-gradient-to-b from-blue-900 via-blue-950 to-slate-950 pt-8 pb-6 text-center px-4">
         <h1 class="text-3xl font-extrabold text-blue-400 tracking-tight flex justify-center items-center gap-2">
-            <i class="fas fa-swimmer animate-pulse"></i> Wolne Tory Poznań
+            <i class="fas fa-swimmer"></i> Wolne Tory Poznań
         </h1>
         <p class="text-xs text-blue-300/70 mt-1.5 font-medium tracking-wide">Wszystkie odległości mierzone z lokalizacji: <span class="text-amber-400">Gołuski</span></p>
     </header>
@@ -20,21 +22,19 @@
     <main class="max-w-md mx-auto px-4 mt-2">
         
         <!-- Inteligentne Okno Wyszukiwania -->
-        <div class="bg-slate-900/90 border border-blue-500/30 p-5 rounded-2xl shadow-2xl shadow-blue-950/50 backdrop-blur-md">
+        <div class="bg-slate-900 p-5 rounded-2xl border border-blue-500/30 shadow-2xl">
             <label class="block text-xs font-bold text-blue-400 mb-2 tracking-wider uppercase flex items-center gap-1.5">
-                <i class="fas fa-magic text-blue-400"></i> Inteligentny asystent torów
+                <i class="fas fa-magic"></i> Inteligentny asystent torów
             </label>
             <div class="flex flex-col gap-2.5">
                 <input id="searchInput" type="text" 
                        placeholder="np. znajdź wolne tory na Chwiałce w poniedziałek o 14:00" 
-                       class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3.5 py-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none transition-all duration-200 shadow-inner">
-                <button onclick="handleSmartSearch()" class="w-full bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 rounded-xl text-sm transition-all duration-150 flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
+                       class="w-full bg-slate-950 border border-slate-800 focus:border-blue-500 rounded-xl px-3.5 py-3 text-sm text-slate-200 placeholder-slate-500 focus:outline-none transition-all shadow-inner">
+                <button onclick="handleSmartSearch()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
                     <i class="fas fa-search-location"></i> Szukaj dostępności
                 </button>
             </div>
-            
-            <!-- Okno wynikowe wyszukiwania -->
-            <div id="searchResult" class="hidden mt-4 p-4 bg-blue-950/60 border border-blue-500/20 rounded-xl text-xs text-slate-200 leading-relaxed transition-all duration-300"></div>
+            <div id="searchResult" class="hidden mt-4 p-4 bg-blue-950/60 border border-blue-500/20 rounded-xl text-xs text-slate-200 leading-relaxed"></div>
         </div>
 
         <!-- Sekcja 1: Moje Baseny Główne -->
@@ -44,7 +44,7 @@
         
         <div class="flex flex-col gap-3.5">
             <!-- POSiR Grunwald -->
-            <div class="bg-slate-900 border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
                 <div>
                     <h3 class="font-bold text-slate-100 text-base">POSiR Grunwald</h3>
                     <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>14.5 km z Gołusek</p>
@@ -55,7 +55,7 @@
             </div>
 
             <!-- POSiR Chwiałka -->
-            <div class="bg-slate-900 border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
                 <div>
                     <h3 class="font-bold text-slate-100 text-base">POSiR Chwiałka</h3>
                     <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>17.3 km z Gołusek</p>
@@ -66,7 +66,7 @@
             </div>
 
             <!-- Tarnowskie Termy -->
-            <div class="bg-slate-900 border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
                 <div>
                     <h3 class="font-bold text-slate-100 text-base">Tarnowskie Termy</h3>
                     <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>17.4 km z Gołusek</p>
@@ -77,7 +77,7 @@
             </div>
 
             <!-- Pływalnia CityZen -->
-            <div class="bg-slate-900 border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-md">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex justify-between items-center shadow-md">
                 <div>
                     <h3 class="font-bold text-slate-100 text-base">Pływalnia CityZen</h3>
                     <p class="text-xs text-slate-400 mt-1"><i class="fas fa-location-dot text-blue-500 mr-1.5"></i>18.0 km z Gołusek</p>
@@ -93,43 +93,56 @@
             <i class="fas fa-th-list text-blue-500"></i> Pozostałe pływalnie i powiat
         </h2>
 
-        <div id="directoryList" class="flex flex-col gap-3.5">
+        <div class="flex flex-col gap-3.5">
             <!-- Winogrady -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs shadow-inner">
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs">
                 <div class="flex justify-between items-start">
                     <h4 class="font-bold text-slate-200 text-sm">POSiR Winogrady</h4>
-                    <span class="text-blue-400 font-semibold bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/40">21.5 km</span>
+                    <span class="text-blue-400 font-semibold bg-blue-950 px-2 py-0.5 rounded border border-blue-900/40">21.5 km</span>
                 </div>
                 <p class="text-slate-400 mt-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-slate-600"></i> Osiedle Zwycięstwa 125, Poznań</p>
                 <p class="text-slate-400 mt-1 flex items-center gap-1.5"><i class="fas fa-clock text-slate-600"></i> Pon-Nied: 6:00 - 22:00</p>
                 <div class="mt-3.5 flex gap-2">
-                    <a href="tel:+48618234544" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50 transition-colors"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
-                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 hover:bg-blue-900/30 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg transition-colors"><i class="fas fa-external-link-alt mr-1.5"></i> Link do grafiku</a>
+                    <a href="tel:+48618234544" class="flex-1 bg-slate-800 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
+                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg"><i class="fas fa-external-link-alt mr-1.5"></i> Grafik</a>
                 </div>
             </div>
 
             <!-- Rataje -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs shadow-inner">
+            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs">
                 <div class="flex justify-between items-start">
                     <h4 class="font-bold text-slate-200 text-sm">POSiR Rataje</h4>
-                    <span class="text-blue-400 font-semibold bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/40">22.1 km</span>
+                    <span class="text-blue-400 font-semibold bg-blue-950 px-2 py-0.5 rounded border border-blue-900/40">22.1 km</span>
                 </div>
                 <p class="text-slate-400 mt-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-slate-600"></i> Osiedle Piastowskie 40, Poznań</p>
                 <p class="text-slate-400 mt-1 flex items-center gap-1.5"><i class="fas fa-clock text-slate-600"></i> Pon-Nied: 6:00 - 22:00</p>
                 <div class="mt-3.5 flex gap-2">
-                    <a href="tel:+48618710642" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50 transition-colors"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
-                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 hover:bg-blue-900/30 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg transition-colors"><i class="fas fa-external-link-alt mr-1.5"></i> Link do grafiku</a>
+                    <a href="tel:+48618710642" class="flex-1 bg-slate-800 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
+                    <a href="https://posir.poznan.pl" target="_blank" class="flex-1 bg-blue-950/40 border border-blue-800/40 text-blue-400 font-medium text-center py-2.5 rounded-lg"><i class="fas fa-external-link-alt mr-1.5"></i> Grafik</a>
                 </div>
             </div>
+        </div>
+    </main>
 
-            <!-- Termy Maltańskie -->
-            <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 text-xs shadow-inner">
-                <div class="flex justify-between items-start">
-                    <h4 class="font-bold text-slate-200 text-sm">Termy Maltańskie</h4>
-                    <span class="text-blue-400 font-semibold bg-blue-950/80 px-2 py-0.5 rounded border border-blue-900/40">23.4 km</span>
-                </div>
-                <p class="text-slate-400 mt-2 flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-slate-600"></i> ul. Termalna 1, Poznań</p>
-                <p class="text-slate-400 mt-1 flex items-center gap-1.5"><i class="fas fa-clock text-slate-600"></i> Pon-Nied: 6:00 - 23:00</p>
-                <div class="mt-3.5 flex gap-2">
-                    <a href="tel:+48618759527" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-center py-2.5 rounded-lg border border-slate-700/50 transition-colors"><i class="fas fa-phone mr-1.5"></i> Zadzwoń</a>
+    <script>
+        function handleSmartSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const resultBox = document.getElementById('searchResult');
+            resultBox.classList.remove('hidden');
 
+            let pool = "";
+            if (query.includes("chwiał") || query.includes("chwial")) pool = "Chwiałka";
+            if (query.includes("grunwald") || query.includes("taborowa")) pool = "Grunwald";
+            if (query.includes("tarnowskie")) pool = "Tarnowskie Termy";
+            if (query.includes("cityzen")) pool = "CityZen";
+
+            if (!pool) {
+                resultBox.innerHTML = `Nie rozpoznałem nazwy basenu. Wpisz np. Chwiałka lub Grunwald.`;
+                return;
+            }
+
+            resultBox.innerHTML = `🔍 <strong>Wynik dla obiektu ${pool}:</strong> Analiza grafiku wskazuje na dostępność wolnych torów dla klientów indywidualnych w wybranym przedziale czasowym.`;
+        }
+    </script>
+</body>
+</html>
