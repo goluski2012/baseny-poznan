@@ -101,6 +101,7 @@
         .badge-emerald { background-color: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
         .badge-amber { background-color: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
         .badge-rose { background-color: rgba(244, 63, 94, 0.1); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+        .badge-slate { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; }
 
         .pool-schedule {
             display: none;
@@ -133,14 +134,14 @@
         <div class="search-box">
             <span style="font-size: 11px; font-weight: bold; color: #60a5fa; text-transform: uppercase;">✨ Inteligentny asystent wyszukiwania</span>
             <input id="searchInput" type="text" placeholder="np. Chwiałka poniedziałek 14:00" class="input-field" style="margin-top: 8px;">
-            <button id="searchBtn" class="search-btn">Szukaj dostępności</button>
+            <button onclick="runSearch()" class="search-btn">Szukaj dostępności</button>
             <div id="searchResult" class="search-result"></div>
         </div>
 
         <h2>⭐ Moje Baseny (Kliknij, aby rozwinąć grafik)</h2>
         
         <!-- Grunwald -->
-        <div class="pool-card" id="card-grunwald">
+        <div class="pool-card" onclick="toggleSchedule('grunwald-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Grunwald</div>
@@ -161,7 +162,7 @@
         </div>
 
         <!-- Chwiałka -->
-        <div class="pool-card" id="card-chwialka">
+        <div class="pool-card" onclick="toggleSchedule('chwialka-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Chwiałka</div>
@@ -179,7 +180,7 @@
         </div>
 
         <!-- Tarnowskie Termy -->
-        <div class="pool-card" id="card-termy">
+        <div class="pool-card" onclick="toggleSchedule('termy-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Tarnowskie Termy</div>
@@ -187,7 +188,7 @@
                 </div>
                 <span class="badge badge-slate">Zobacz grafik</span>
             </div>
-            <div id="termy-sch" class="pool-schedule">
+            <div id="termy-sch" class="pool-schedule" onclick="event.stopPropagation()">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
                     📷 Obiekt publikuje grafik wyłącznie w formie zdjęcia.<br>
                     <a href="https://tarnowskie-termy.pl" target="_blank" style="color: #60a5fa; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz zdjęcie oryginalne ↗️</a>
@@ -196,7 +197,7 @@
         </div>
 
         <!-- CityZen -->
-        <div class="pool-card" id="card-cityzen">
+        <div class="pool-card" onclick="toggleSchedule('cityzen-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">Pływalnia CityZen</div>
@@ -204,7 +205,7 @@
                 </div>
                 <span class="badge badge-rose">Zobacz grafik</span>
             </div>
-            <div id="cityzen-sch" class="pool-schedule">
+            <div id="cityzen-sch" class="pool-schedule" onclick="event.stopPropagation()">
                 <div style="padding: 8px; text-align: center; color: #94a3b8;">
                     🔒 System eFitness wymaga zalogowania lub aplikacji mobilnej.<br>
                     <a href="https://efitness.com.pl" target="_blank" style="color: #fb7185; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz kalendarz eFitness ↗️</a>
@@ -214,14 +215,15 @@
     </main>
 
     <script>
-        // Niezawodna obsługa kliknięć w karty basenów
-        document.getElementById('card-grunwald').addEventListener('click', function() { toggleSchedule('grunwald-sch'); });
-        document.getElementById('card-chwialka').addEventListener('click', function() { toggleSchedule('chwialka-sch'); });
-        document.getElementById('card-termy').addEventListener('click', function() { toggleSchedule('termy-sch'); });
-        document.getElementById('card-cityzen').addEventListener('click', function() { toggleSchedule('cityzen-sch'); });
-
+        // Uniwersalne funkcje przypisane bezpośrednio do zdarzeń HTML onclick
         function toggleSchedule(id) {
             var sch = document.getElementById(id);
-            if (sch.style.display === 'block') {
-                sch.style.display = 'none';
+            if (!sch.style.display || sch.style.display === 'none') {
+                sch.style.display = 'block';
             } else {
+                sch.style.display = 'none';
+            }
+        }
+
+        function runSearch() {
+            var query = document.getElementById('searchInput').value.toLowerCase();
