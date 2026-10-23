@@ -71,6 +71,7 @@
             border: 1px solid rgba(59, 130, 246, 0.2);
             border-radius: 12px;
             font-size: 13px;
+            line-height: 1.6;
         }
         h2 {
             font-size: 11px;
@@ -85,37 +86,24 @@
             border: 1px solid #1e293b;
             border-radius: 16px;
             padding: 16px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: background-color 0.2s;
         }
-        .pool-card:hover {
-            background-color: #1e293b;
-        }
+        .pool-card:hover { background-color: #1e293b; }
         .pool-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .pool-title {
-            font-size: 16px;
-            font-weight: 700;
-        }
-        .pool-distance {
-            font-size: 12px;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
-        .badge {
-            font-size: 12px;
-            font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 10px;
-        }
+        .pool-title { font-size: 16px; font-weight: 700; }
+        .pool-distance { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+        
+        .badge { font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 10px; }
         .badge-emerald { background-color: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
         .badge-amber { background-color: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-        
-        /* Harmonogram rozwijany pod basenem */
+        .badge-rose { background-color: rgba(244, 63, 94, 0.1); color: #fb7185; border: 1px solid rgba(244, 63, 94, 0.3); }
+
         .pool-schedule {
             display: none;
             margin-top: 14px;
@@ -126,96 +114,115 @@
         .schedule-row {
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.2);
         }
         .schedule-row:last-child { border-bottom: none; }
         .lanes-free { color: #34d399; font-weight: bold; }
-        .lanes-busy { color: #f87171; }
+        .lanes-busy { color: #94a3b8; opacity: 0.6; }
+        .lanes-warn { color: #fbbf24; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🏊‍♂️ Wolne Tory Poznań</h1>
-        <div class="meta-desc">Lokalizacja odniesienia: <strong>Gołuski</strong></div>
+        <div class="meta-desc">Punkt startowy trasy: <strong>Gołuski</strong></div>
     </header>
 
     <main>
-        <!-- Aktywne okno asystenta wyszukiwania -->
+        <!-- Wyszukiwarka -->
         <div class="search-box">
-            <span style="font-size: 11px; font-weight: bold; color: #60a5fa; text-transform: uppercase;">✨ Inteligentny wyszukiwacz torów</span>
+            <span style="font-size: 11px; font-weight: bold; color: #60a5fa; text-transform: uppercase;">✨ Inteligentny asystent wyszukiwania</span>
             <input id="searchInput" type="text" placeholder="np. Chwiałka poniedziałek 14:00" class="input-field" style="margin-top: 8px;">
-            <button onclick="executeSearch()" class="search-btn">Szukaj wolnych torów</button>
+            <button onclick="executeSearch()" class="search-btn">Szukaj dostępności</button>
             <div id="searchResult" class="search-result"></div>
         </div>
 
-        <h2>⭐ Moje Baseny (Kliknij basen, by zobaczyć godziny)</h2>
+        <h2>⭐ Moje Baseny (Kliknij, aby rozwinąć grafik)</h2>
         
-        <!-- Karta Grunwald -->
+        <!-- Grunwald -->
         <div class="pool-card" onclick="toggleSchedule('grunwald-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Grunwald</div>
                     <div class="pool-distance">📍 14.5 km z Gołusek</div>
                 </div>
-                <span class="badge badge-amber">Sprawdź godziny</span>
+                <span class="badge badge-amber">Zobacz grafik</span>
             </div>
-            <div id="grunwald-sch" class="pool-schedule">
-                <div class="schedule-row"><span>06:00 - 08:00</span><span class="lanes-free">4 tory wolne</span></div>
-                <div class="schedule-row"><span>08:00 - 14:00</span><span class="lanes-busy">Zajęte (Szkoły)</span></div>
-                <div class="schedule-row"><span>14:00 - 16:00</span><span class="lanes-free">1 tor wolny</span></div>
-                <div class="schedule-row"><span>16:00 - 22:00</span><span class="lanes-free">3 tory wolne</span></div>
+            <div id="grunwald-sch" class="pool-schedule" onclick="event.stopPropagation()">
+                <div class="schedule-row"><span>06:15 - 07:00</span><span class="lanes-free">7 torów wolnych</span></div>
+                <div class="schedule-row"><span>07:00 - 08:30</span><span class="lanes-warn">Zajęte / 1 tor wolny</span></div>
+                <div class="schedule-row"><span>08:30 - 09:15</span><span class="lanes-free">8 torów wolnych (Cały basen!)</span></div>
+                <div class="schedule-row"><span>09:15 - 13:45</span><span class="lanes-busy">Zajęte (Szkoły / Promyki)</span></div>
+                <div class="schedule-row"><span>13:45 - 14:30</span><span class="lanes-free">6 torów wolnych</span></div>
+                <div class="schedule-row"><span>14:30 - 16:00</span><span class="lanes-busy">Zajęte (Szkoły / Treningi)</span></div>
+                <div class="schedule-row"><span>16:00 - 20:30</span><span class="lanes-warn">Zajęte / 1 tor wolny</span></div>
+                <div class="schedule-row"><span>20:30 - 22:00</span><span class="lanes-free">7 torów wolnych</span></div>
             </div>
         </div>
 
-        <!-- Karta Chwiałka -->
+        <!-- Chwiałka -->
         <div class="pool-card" onclick="toggleSchedule('chwialka-sch')">
             <div class="pool-info">
                 <div>
                     <div class="pool-title">POSiR Chwiałka</div>
                     <div class="pool-distance">📍 17.3 km z Gołusek</div>
                 </div>
-                <span class="badge badge-emerald">Sprawdź godziny</span>
+                <span class="badge badge-emerald">Zobacz grafik</span>
             </div>
-            <div id="chwialka-sch" class="pool-schedule">
-                <div class="schedule-row"><span>06:00 - 09:00</span><span class="lanes-free">5 torów wolnych</span></div>
-                <div class="schedule-row"><span>09:00 - 14:00</span><span class="lanes-busy">Zajęte (Kluby)</span></div>
-                <div class="schedule-row"><span>14:00 - 17:00</span><span class="lanes-free">2 tory wolne</span></div>
-                <div class="schedule-row"><span>17:00 - 22:00</span><span class="lanes-free">4 tory wolne</span></div>
+            <div id="chwialka-sch" class="pool-schedule" onclick="event.stopPropagation()">
+                <div class="schedule-row"><span>06:15 - 11:30</span><span class="lanes-free">6 torów wolnych (Cały basen!)</span></div>
+                <div class="schedule-row"><span>11:30 - 15:15</span><span class="lanes-busy">Zajęte (Szkoły / Rezerwacje)</span></div>
+                <div class="schedule-row"><span>15:15 - 16:45</span><span class="lanes-warn">Ograniczenie / 4 tory wolne</span></div>
+                <div class="schedule-row"><span>16:45 - 21:15</span><span class="lanes-busy">Zajęte (Akademia / Fyrtel)</span></div>
+                <div class="schedule-row"><span>21:15 - 22:00</span><span class="lanes-free">6 torów wolnych</span></div>
+            </div>
+        </div>
+
+        <!-- Tarnowskie Termy -->
+        <div class="pool-card" onclick="toggleSchedule('termy-sch')">
+            <div class="pool-info">
+                <div>
+                    <div class="pool-title">Tarnowskie Termy</div>
+                    <div class="pool-distance">📍 17.4 km z Gołusek</div>
+                </div>
+                <span class="badge badge-slate">Zobacz grafik</span>
+            </div>
+            <div id="termy-sch" class="pool-schedule" onclick="event.stopPropagation()">
+                <div style="padding: 8px; text-align: center; color: #94a3b8;">
+                    📷 Obiekt publikuje grafik wyłącznie w formie zdjęcia.<br>
+                    <a href="https://tarnowskie-termy.pl/pl/aquapark-tarnowskie-termy/grafik-torow" target="_blank" style="color: #60a5fa; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz zdjęcie oryginalne ↗️</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CityZen -->
+        <div class="pool-card" onclick="toggleSchedule('cityzen-sch')">
+            <div class="pool-info">
+                <div>
+                    <div class="pool-title">Pływalnia CityZen</div>
+                    <div class="pool-distance">📍 18.0 km z Gołusek</div>
+                </div>
+                <span class="badge badge-rose">Zobacz grafik</span>
+            </div>
+            <div id="cityzen-sch" class="pool-schedule" onclick="event.stopPropagation()">
+                <div style="padding: 8px; text-align: center; color: #94a3b8;">
+                    🔒 System eFitness wymaga zalogowania lub aplikacji mobilnej.<br>
+                    <a href="https://plywalnia-cityzen-cms.efitness.com.pl/kalendarz-zajec" target="_blank" style="color: #fb7185; text-decoration: underline; display: inline-block; margin-top: 8px;">Otwórz kalendarz eFitness ↗️</a>
+                </div>
             </div>
         </div>
     </main>
 
     <script>
-        // Funkcja otwierająca harmonogram po kliknięciu w basen
         function toggleSchedule(id) {
             const sch = document.getElementById(id);
             sch.style.display = (sch.style.display === 'block') ? 'none' : 'block';
         }
 
-        // Silnik wyszukiwarki (Czyta wpisany tekst i wyciąga dane z bazy podręcznej)
         function executeSearch() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const resultBox = document.getElementById('searchResult');
             resultBox.style.display = 'block';
 
-            if (query.includes('chwiał') || query.includes('chwial')) {
-                if (query.includes('14')) {
-                    resultBox.innerHTML = `🟢 <strong>POSiR Chwiałka (Poniedziałek 14:00):</strong> Dostępne są <strong>2 tory wolne</strong> dla klientów indywidualnych.`;
-                } else {
-                    resultBox.innerHTML = `ℹ️ Na Chwiałce najwięcej wolnych torów (aż 5) jest rano w godzinach 06:00 - 09:00.`;
-                }
-            } else if (query.includes('grunwald')) {
-                if (query.includes('14')) {
-                    resultBox.innerHTML = `🟡 <strong>POSiR Grunwald (Poniedziałek 14:00):</strong> Ograniczona dostępność – wolny jest tylko <strong>1 tor</strong>.`;
-                } else {
-                    resultBox.innerHTML = `ℹ️ Na Grunwaldzie optymalne godziny to 16:00 - 22:00 (3 tory wolne).`;
-                }
-            } else {
-                resultBox.innerHTML = `⚠️ Nie rozpoznałem basenu. Wpisz np. "Chwiałka 14:00" lub "Grunwald".`;
-            }
-        }
-    </script>
-</body>
-</html>
